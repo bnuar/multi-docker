@@ -8,9 +8,9 @@ before_install:
   - docker build -t bnuar/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  -  docker run -e CI=true bnuar/react-test npm test
+  - docker run -e CI=true bnuar/react-test npm test
 
- after_success:
+after_success:
   - docker build -t bnuar/multi-client ./client
   - docker build -t bnuar/multi-nginx ./nginx
   - docker build -t bnuar/multi-server ./server
@@ -18,7 +18,7 @@ script:
 # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # Take those images and push them to docker hub
-- docker push bnuar/multi-client
-- docker push bnuar/multi-nginx
-- docker push bnuar/multi-server
-- docker push bnuar/multi-worker
+  - docker push bnuar/multi-client
+  - docker push bnuar/multi-nginx
+  - docker push bnuar/multi-server
+  - docker push bnuar/multi-worker
