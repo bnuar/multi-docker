@@ -14,3 +14,10 @@ script:
   - docker build -t bernardnuar/multi-nginx ./nginx
   - docker build -t bernardnuar/multi-server ./server
   - docker build -t bernardnuar/multi-worker ./worker
+# Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# Take those images and push them to docker hub
+- docker push bernardnuar/multi-client
+- docker push bernardnuar/multi-nginx
+- docker push bernardnuar/multi-server
+- docker push bernardnuar/multi-worker
